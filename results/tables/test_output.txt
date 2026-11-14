@@ -1,0 +1,49 @@
+===== Trie and failure links =====
+  PASS  Trie of {he, she, his, hers} has 10 nodes (shared prefix h is stored once)
+  PASS  Trie has a node for 'her' and no node for 'hes'
+  PASS  fail(h) = root
+  PASS  fail(he) = root ('e' is not a node)
+  PASS  fail(her) = root ('er', 'r' are not nodes)
+  PASS  fail(hers) = s
+  PASS  fail(hi) = root
+  PASS  fail(his) = s
+  PASS  fail(s) = root
+  PASS  fail(sh) = h
+  PASS  fail(she) = he
+  PASS  output link of 'she' is 'he' (he is a suffix of she and a pattern)
+  PASS  output link of 'hers' is none
+  PASS  output link of 'his' is none
+  PASS  fail(aaa) = aa and fail(aa) = a and fail(a) = root
+  PASS  output link of 'aaa' is 'aa', of 'aa' is 'a'
+===== Search: small cases =====
+  PASS  Match: single pattern -> [ab@0, ab@2, ab@4]
+  PASS  Match: classic ushers: she, he and hers -> [he@2, hers@2, she@1]
+  PASS  Match: pattern inside another pattern is found too (output links) -> [a@0, a@1, a@2, a@3, aa@0, aa@1, aa@2, aaa@0, aaa@1]
+  PASS  Match: example with a, ab, bab, bc, bca, c, caa -> [a@0, a@4, ab@0, ab@4, bc@1, c@2, c@3]
+  PASS  Match: pattern at the beginning -> [abc@0]
+  PASS  Match: pattern at the end -> [def@3]
+  PASS  Match: pattern in the middle -> [cd@2]
+  PASS  Match: overlapping occurrences of the same pattern -> [aba@0, aba@2, aba@4]
+  PASS  Match: one pattern is a prefix of another -> [ab@1, abc@1]
+  PASS  Match: one pattern is a suffix of another -> [abc@1, bc@2]
+  PASS  Match: patterns are found at different places -> [ab@0, cd@3, ef@6]
+  PASS  Match: failure link is needed (abcd and bce in abce) -> [bce@1]
+===== Special cases =====
+  PASS  Match: no pattern occurs in the text -> []
+  PASS  Match: empty text -> []
+  PASS  Match: empty list of patterns -> []
+  PASS  Match: pattern equal to the whole text -> [abc@0]
+  PASS  Match: pattern longer than the text -> []
+  PASS  Match: one-character patterns -> [a@0, a@3, b@1]
+  PASS  Match: the same pattern given twice: both indexes are reported -> [ab@0, ab@0]
+  PASS  character outside the alphabet in the text is handled (abxabc -> abc@3)
+  PASS  empty pattern is rejected
+  PASS  pattern with a character outside the alphabet is rejected
+  PASS  alphabet with a repeated character is rejected
+  PASS  failure steps <= text length
+===== Random cross-checks =====
+  PASS  Random: Aho-Corasick == brute force on 500 small cases (alphabet ab, duplicates allowed)
+  PASS  Random: for every pattern the positions are the same as from KMP (10 texts of length 5000, 50 patterns)
+  PASS  Generator: 1000 different patterns
+
+Passed: 43, failed: 0
