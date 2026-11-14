@@ -258,15 +258,15 @@ Values above 1 mean that Aho-Corasick is faster.
 
 **1. Execution time vs. text length** (one panel for every number of patterns, log–log scale)
 
-![Time vs text length](../../../Downloads/aho-corasick/aho-corasick/results/plots/time_vs_text_length.png)
+![Time vs text length](results/plots/time_vs_text_length.png)
 
 **2. Execution time vs. number of patterns** (one panel for every text length)
 
-![Time vs number of patterns](../../../Downloads/aho-corasick/aho-corasick/results/plots/time_vs_pattern_count.png)
+![Time vs number of patterns](results/plots/time_vs_pattern_count.png)
 
 **3. How many times faster is Aho–Corasick (KMP time / Aho–Corasick time)**
 
-![Speed-up](../../../Downloads/aho-corasick/aho-corasick/results/plots/speedup.png)
+![Speed-up](results/plots/speedup.png)
 
 ## 6. Discussion: Aho–Corasick vs. KMP per pattern
 
